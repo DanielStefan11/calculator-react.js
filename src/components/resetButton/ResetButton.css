@@ -1,0 +1,20 @@
+.reset-btn {
+  background-color: #ff6347;
+  color: #fff;
+  display: flex;
+  flex: 1;
+  height: 4em;
+  align-items: center;
+  justify-content: center;
+  font-weight: lighter;
+  font-size: 1.4em;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.reset-btn:hover,
+.reset-btn:focus {
+  background-color: #d6543d;
+}

@@ -1,0 +1,37 @@
+.button {
+  display: flex;
+  height: 4em;
+  width: 4em;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+  background-color: #d3d3d3;
+  color: #000;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 20%;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #a7a7a7;
+}
+
+.operator {
+  background-color: #1e90ff;
+  color: #fff;
+  margin: 5px;
+}
+
+.operator:hover,
+.operator.focus {
+  background-color: #1a76d1;
+}
+
+@media screen and (max-width: 500px) {
+  .button {
+    font-size: 1.2rem;
+  }
+}
