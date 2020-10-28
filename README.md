@@ -10,7 +10,7 @@ Simple Calculator created with React.js
 - Subtraction
 - Multiplication
 - Division
-- You can use paranthesis for complex calculations and decimal numbers
+- You can use parenthesis for complex calculations and decimal numbers
 
 ## Technologies:
 
