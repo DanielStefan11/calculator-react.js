@@ -28,9 +28,14 @@ class App extends React.Component {
 
   calculate = () => {
     try {
-      this.setState({ input: eval(this.state.input) });
+      this.setState({
+        input:
+          eval(this.state.input) === Infinity
+            ? "Can not be divided by 0"
+            : eval(this.state.input),
+      });
     } catch (e) {
-      this.setState({ input: "Error - click Delete" });
+      this.setState({ input: "Error - click Reset" });
     }
   };
 
