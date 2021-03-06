@@ -14,6 +14,98 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    document.addEventListener('keydown', (event) => {
+      const digitCode = event.key;
+      let digit;
+
+      switch (digitCode) {
+        // Operands
+        case '1':
+          digit = 1;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '2':
+          digit = 2;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '3':
+          digit = 3;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '4':
+          digit = 4;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '5':
+          digit = 5;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '6':
+          digit = 6;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '7':
+          digit = 7;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '8':
+          digit = 8;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '9':
+          digit = 9;
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '0':
+          digit = 0;
+          this.setState({ input: this.state.input + digit });
+          break;
+
+        // Operators
+        case '+':
+          digit = '+';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '-':
+          digit = '-';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '/':
+          digit = '/';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '*':
+          digit = '*';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '=':
+          this.calculate();
+          break;
+
+        // Others
+        case '.':
+          digit = '.';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case '(':
+          digit = '(';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case ')':
+          digit = ')';
+          this.setState({ input: this.state.input + digit });
+          break;
+        case ' ':
+          this.reset();
+          break;
+        case 'Backspace':
+          this.backspace();
+          break;
+      }
+    });
+  };
+
   addToInput = (value) => {
     this.setState({ input: this.state.input + value });
   };

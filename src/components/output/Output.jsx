@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 // CSS
-import "./Output.css";
+import './Output.css';
 
 export default function Output(props) {
-  return <div className="output">{props.children}</div>;
+  return <div className='output'>{props.children}</div>;
 }

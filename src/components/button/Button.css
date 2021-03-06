@@ -30,6 +30,15 @@
   background-color: #1a76d1;
 }
 
+.equal-btn {
+  background-color: #a52a2a;
+}
+
+.equal-btn:hover,
+.equal-btn:focus {
+  background-color: #a52a2aa8;
+}
+
 @media screen and (max-width: 500px) {
   .button {
     font-size: 1.2rem;

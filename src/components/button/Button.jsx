@@ -11,7 +11,7 @@ export default function Button(props) {
     <div
       className={`button ${isOperator(props.children) ? '' : 'operator'} ${
         props.children === 'Backspace' && 'backspace-btn'
-      }`}
+      } ${props.children === '=' && 'equal-btn'}`}
       onClick={() => props.handleClick(props.children)}
     >
       {props.children}
