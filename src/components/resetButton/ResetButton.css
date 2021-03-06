@@ -18,3 +18,10 @@
 .reset-btn:focus {
   background-color: #d6543d;
 }
+
+@media screen and (max-width: 500px) {
+  .reset-btn {
+    height: 3.5em;
+    font-size: 1rem;
+  }
+}

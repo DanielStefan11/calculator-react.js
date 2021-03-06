@@ -12,3 +12,16 @@
   margin: 5px;
   border-radius: 20px;
 }
+
+@media screen and (max-width: 500px) {
+  .output {
+    height: 3em;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .output {
+    font-size: 1rem;
+  }
+}
