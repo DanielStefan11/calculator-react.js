@@ -19,10 +19,18 @@
   background-color: #a7a7a7;
 }
 
+.operand-button-pressed {
+  background-color: #a7a7a7;
+}
+
 .operator {
   background-color: #1e90ff;
   color: #fff;
   margin: 5px;
+}
+
+.operators-button-style {
+  background-color: #1a76d1;
 }
 
 .operator:hover,
@@ -36,6 +44,10 @@
 
 .equal-btn:hover,
 .equal-btn:focus {
+  background-color: #a52a2aa8;
+}
+
+.equal-button-pressed {
   background-color: #a52a2aa8;
 }
 

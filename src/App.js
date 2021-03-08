@@ -9,6 +9,34 @@ import "./App.css";
 const App = () => {
   const [input, setInput] = useState(() => "");
 
+
+
+  const [pressed1, setPressed1] = useState(() => false);
+  const [pressed2, setPressed2] = useState(() => false);
+  const [pressed3, setPressed3] = useState(() => false);
+  const [pressed4, setPressed4] = useState(() => false);
+  const [pressed5, setPressed5] = useState(() => false);
+  const [pressed6, setPressed6] = useState(() => false);
+  const [pressed7, setPressed7] = useState(() => false);
+  const [pressed8, setPressed8] = useState(() => false);
+  const [pressed9, setPressed9] = useState(() => false);
+  const [pressed0, setPressed0] = useState(() => false);
+
+  // const [pressedAddition, setPressedAddition] = useState(() => false);
+  // const [pressedSubtraction, setPressedSubtraction] = useState(() => false);
+  // const [pressedDivision, setPressedDivision] = useState(() => false);
+  // const [pressedMultiplication, setPressedMultiplication] = useState(
+  //   () => false
+  // );
+  // const [pressedLeftParanthesis, setPressedLeftParanthesis] = useState(
+  //   () => false
+  // );
+  // const [pressedRightParanthesis, setPressedRightParanthesis] = useState(
+  //   () => false
+  // );
+  // const [pressedBackspace, setPressedBackspace] = useState(() => false);
+  // const [pressedDot, setPressedDot] = useState(() => false);
+
   useEffect(() => {
     const listenerFunction = (event) => {
       const digitCode = event.key;
@@ -19,52 +47,52 @@ const App = () => {
         case "1":
           digit = 1;
           setInput((prevInput) => prevInput + digit);
-          console.log("1");
+          setPressed1(() => true);
           break;
         case "2":
           digit = 2;
           setInput((prevInput) => prevInput + digit);
-          console.log("2");
+          setPressed2(() => true);
           break;
         case "3":
           digit = 3;
           setInput((prevInput) => prevInput + digit);
-          console.log("3");
+          setPressed3(() => true);
           break;
         case "4":
           digit = 4;
           setInput((prevInput) => prevInput + digit);
-          console.log("4");
+          setPressed4(() => true);
           break;
         case "5":
           digit = 5;
           setInput((prevInput) => prevInput + digit);
-          console.log("5");
+          setPressed5(() => true);
           break;
         case "6":
           digit = 6;
           setInput((prevInput) => prevInput + digit);
-          console.log("6");
+          setPressed6(() => true);
           break;
         case "7":
           digit = 7;
           setInput((prevInput) => prevInput + digit);
-          console.log("7");
+          setPressed7(() => true);
           break;
         case "8":
           digit = 8;
           setInput((prevInput) => prevInput + digit);
-          console.log("8");
+          setPressed8(() => true);
           break;
         case "9":
           digit = 9;
           setInput((prevInput) => prevInput + digit);
-          console.log("9");
+          setPressed9(() => true);
           break;
         case "0":
           digit = 0;
           setInput((prevInput) => prevInput + digit);
-          console.log("0");
+          setPressed0(() => true);
           break;
 
         // Operators
@@ -124,9 +152,57 @@ const App = () => {
 
     return () => {
       document.removeEventListener("keydown", listenerFunction);
-      console.log('Removed Listener')
     };
   }, [input]);
+
+  useEffect(() => {
+    const listener = (event) => {
+      const digitCode = event.key;
+      let digit;
+
+      switch (digitCode) {
+        // operands
+        case "1":
+          setPressed1(() => false);
+          break;
+        case "2":
+          setPressed2(() => false);
+        case "3":
+          setPressed3(() => false);
+        case "4":
+          setPressed4(() => false);
+        case "5":
+          setPressed5(() => false);
+        case "6":
+          setPressed6(() => false);
+        case "7":
+          setPressed7(() => false);
+        case "8":
+          setPressed8(() => false);
+        case "9":
+          setPressed9(() => false);
+        case "0":
+          setPressed0(() => false);
+      }
+    };
+
+    document.addEventListener("keyup", listener);
+
+    return () => {
+      document.removeEventListener("keyup", listener);
+    };
+  }, [
+    pressed1,
+    pressed2,
+    pressed3,
+    pressed4,
+    pressed5,
+    pressed6,
+    pressed7,
+    pressed8,
+    pressed9,
+    pressed0,
+  ]);
 
   const addToInput = (value) => {
     setInput(input + value);
@@ -168,29 +244,49 @@ const App = () => {
           <Button handleClick={addToInput}>)</Button>
         </div>
         <div className="row">
-          <Button handleClick={addToInput}>7</Button>
-          <Button handleClick={addToInput}>8</Button>
-          <Button handleClick={addToInput}>9</Button>
+          <Button pressed7={pressed7} handleClick={addToInput}>
+            7
+          </Button>
+          <Button pressed8={pressed8} handleClick={addToInput}>
+            8
+          </Button>
+          <Button pressed9={pressed9} handleClick={addToInput}>
+            9
+          </Button>
           <Button handleClick={addToInput}>/</Button>
         </div>
 
         <div className="row">
-          <Button handleClick={addToInput}>4</Button>
-          <Button handleClick={addToInput}>5</Button>
-          <Button handleClick={addToInput}>6</Button>
+          <Button pressed4={pressed4} handleClick={addToInput}>
+            4
+          </Button>
+          <Button pressed5={pressed5} handleClick={addToInput}>
+            5
+          </Button>
+          <Button pressed6={pressed6} handleClick={addToInput}>
+            6
+          </Button>
           <Button handleClick={addToInput}>*</Button>
         </div>
 
         <div className="row">
-          <Button handleClick={addToInput}>1</Button>
-          <Button handleClick={addToInput}>2</Button>
-          <Button handleClick={addToInput}>3</Button>
+          <Button pressed1={pressed1} handleClick={addToInput}>
+            1
+          </Button>
+          <Button pressed2={pressed2} handleClick={addToInput}>
+            2
+          </Button>
+          <Button pressed3={pressed3} handleClick={addToInput}>
+            3
+          </Button>
           <Button handleClick={addToInput}>+</Button>
         </div>
 
         <div className="row">
           <Button handleClick={addToInput}>.</Button>
-          <Button handleClick={addToInput}>0</Button>
+          <Button pressed0={pressed0} handleClick={addToInput}>
+            0
+          </Button>
           <Button handleClick={calculate}>=</Button>
           <Button handleClick={addToInput}>-</Button>
         </div>
