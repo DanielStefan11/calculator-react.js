@@ -29,6 +29,15 @@
   width: 100%;
 }
 
+.notes-container {
+  padding: 0 1rem;
+}
+
+.notes {
+  color: #fff;
+  text-align: center;
+}
+
 @media screen and (max-width: 500px) {
   .calc-container {
     width: 300px;

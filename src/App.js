@@ -1,188 +1,211 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 // Components
-import Output from './components/output/Output';
-import Button from './components/button/Button';
-import ResetButton from './components/resetButton/ResetButton';
+import Output from "./components/output/Output";
+import Button from "./components/button/Button";
+import ResetButton from "./components/resetButton/ResetButton";
 // CSS
-import './App.css';
+import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '',
-    };
-  }
+const App = () => {
+  const [input, setInput] = useState(() => "");
 
-  componentDidMount = () => {
-    document.addEventListener('keydown', (event) => {
+  useEffect(() => {
+    const listenerFunction = (event) => {
       const digitCode = event.key;
       let digit;
 
       switch (digitCode) {
         // Operands
-        case '1':
+        case "1":
           digit = 1;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("1");
           break;
-        case '2':
+        case "2":
           digit = 2;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("2");
           break;
-        case '3':
+        case "3":
           digit = 3;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("3");
           break;
-        case '4':
+        case "4":
           digit = 4;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("4");
           break;
-        case '5':
+        case "5":
           digit = 5;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("5");
           break;
-        case '6':
+        case "6":
           digit = 6;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("6");
           break;
-        case '7':
+        case "7":
           digit = 7;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("7");
           break;
-        case '8':
+        case "8":
           digit = 8;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("8");
           break;
-        case '9':
+        case "9":
           digit = 9;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("9");
           break;
-        case '0':
+        case "0":
           digit = 0;
-          this.setState({ input: this.state.input + digit });
+          setInput((prevInput) => prevInput + digit);
+          console.log("0");
           break;
 
         // Operators
-        case '+':
-          digit = '+';
-          this.setState({ input: this.state.input + digit });
+        case "+":
+          digit = "+";
+          setInput((prevInput) => prevInput + digit);
+          console.log("+");
           break;
-        case '-':
-          digit = '-';
-          this.setState({ input: this.state.input + digit });
+        case "-":
+          digit = "-";
+          setInput((prevInput) => prevInput + digit);
+          console.log("-");
           break;
-        case '/':
-          digit = '/';
-          this.setState({ input: this.state.input + digit });
+        case "/":
+          digit = "/";
+          setInput((prevInput) => prevInput + digit);
+          console.log("/");
           break;
-        case '*':
-          digit = '*';
-          this.setState({ input: this.state.input + digit });
+        case "*":
+          digit = "*";
+          setInput((prevInput) => prevInput + digit);
+          console.log("*");
           break;
-        case '=':
-          this.calculate();
+        case "=":
+          calculate();
+          console.log("calculate");
           break;
 
         // Others
-        case '.':
-          digit = '.';
-          this.setState({ input: this.state.input + digit });
+        case ".":
+          digit = ".";
+          setInput((prevInput) => prevInput + digit);
+          console.log(".");
           break;
-        case '(':
-          digit = '(';
-          this.setState({ input: this.state.input + digit });
+        case "(":
+          digit = "(";
+          setInput((prevInput) => prevInput + digit);
+          console.log("(");
           break;
-        case ')':
-          digit = ')';
-          this.setState({ input: this.state.input + digit });
+        case ")":
+          digit = ")";
+          setInput((prevInput) => prevInput + digit);
+          console.log(")");
           break;
-        case ' ':
-          this.reset();
+        case " ":
+          reset();
+          console.log("reset");
           break;
-        case 'Backspace':
-          this.backspace();
+        case "Backspace":
+          backspace();
+          console.log("backspace");
           break;
       }
-    });
+    };
+
+    document.addEventListener("keydown", listenerFunction);
+
+    return () => {
+      document.removeEventListener("keydown", listenerFunction);
+      console.log('Removed Listener')
+    };
+  }, [input]);
+
+  const addToInput = (value) => {
+    setInput(input + value);
   };
 
-  addToInput = (value) => {
-    this.setState({ input: this.state.input + value });
-  };
-
-  backspace = () => {
-    if (typeof this.state.input === 'string') {
-      this.setState({ input: this.state.input.slice(0, -1) });
-    } else if (typeof this.state.input === 'number') {
-      this.setState({ input: this.state.input.toString().slice(0, -1) });
+  const backspace = () => {
+    if (typeof input === "string") {
+      setInput(input.slice(0, -1));
+    } else if (typeof input === "number") {
+      setInput(input.toString().slice(0, -1));
     }
   };
 
-  calculate = () => {
+  const calculate = () => {
     try {
-      this.setState({
-        input:
-          eval(this.state.input) === Infinity
-            ? 'Can not be divided by 0'
-            : eval(this.state.input),
-      });
+      setInput(
+        eval(input) === Infinity ? "Can not be divided by 0" : eval(input)
+      );
     } catch (e) {
-      this.setState({ input: 'Error - click Reset' });
+      setInput("Error - click Reset");
     }
   };
 
-  reset = () => {
-    this.setState({ input: '' });
+  const reset = () => {
+    setInput("");
   };
 
-  render() {
-    return (
-      <div className='App'>
-        <h1 className='calc-heading'>React Calculator</h1>
-        <div className='calc-container'>
-          <div className='row'>
-            <Output>{this.state.input}</Output>
-          </div>
+  return (
+    <div className="App">
+      <h1 className="calc-heading">React Calculator</h1>
+      <div className="calc-container">
+        <div className="row">
+          <Output>{input}</Output>
+        </div>
 
-          <div className='row'>
-            <Button handleClick={this.addToInput}>(</Button>
-            <Button handleClick={this.backspace}>Backspace</Button>
-            <Button handleClick={this.addToInput}>)</Button>
-          </div>
-          <div className='row'>
-            <Button handleClick={this.addToInput}>7</Button>
-            <Button handleClick={this.addToInput}>8</Button>
-            <Button handleClick={this.addToInput}>9</Button>
-            <Button handleClick={this.addToInput}>/</Button>
-          </div>
+        <div className="row">
+          <Button handleClick={addToInput}>(</Button>
+          <Button handleClick={backspace}>Backspace</Button>
+          <Button handleClick={addToInput}>)</Button>
+        </div>
+        <div className="row">
+          <Button handleClick={addToInput}>7</Button>
+          <Button handleClick={addToInput}>8</Button>
+          <Button handleClick={addToInput}>9</Button>
+          <Button handleClick={addToInput}>/</Button>
+        </div>
 
-          <div className='row'>
-            <Button handleClick={this.addToInput}>4</Button>
-            <Button handleClick={this.addToInput}>5</Button>
-            <Button handleClick={this.addToInput}>6</Button>
-            <Button handleClick={this.addToInput}>*</Button>
-          </div>
+        <div className="row">
+          <Button handleClick={addToInput}>4</Button>
+          <Button handleClick={addToInput}>5</Button>
+          <Button handleClick={addToInput}>6</Button>
+          <Button handleClick={addToInput}>*</Button>
+        </div>
 
-          <div className='row'>
-            <Button handleClick={this.addToInput}>1</Button>
-            <Button handleClick={this.addToInput}>2</Button>
-            <Button handleClick={this.addToInput}>3</Button>
-            <Button handleClick={this.addToInput}>+</Button>
-          </div>
+        <div className="row">
+          <Button handleClick={addToInput}>1</Button>
+          <Button handleClick={addToInput}>2</Button>
+          <Button handleClick={addToInput}>3</Button>
+          <Button handleClick={addToInput}>+</Button>
+        </div>
 
-          <div className='row'>
-            <Button handleClick={this.addToInput}>.</Button>
-            <Button handleClick={this.addToInput}>0</Button>
-            <Button handleClick={this.calculate}>=</Button>
-            <Button handleClick={this.addToInput}>-</Button>
-          </div>
-          <div className='row'>
-            <ResetButton handleReset={this.reset}>Reset</ResetButton>
-          </div>
+        <div className="row">
+          <Button handleClick={addToInput}>.</Button>
+          <Button handleClick={addToInput}>0</Button>
+          <Button handleClick={calculate}>=</Button>
+          <Button handleClick={addToInput}>-</Button>
+        </div>
+        <div className="row">
+          <ResetButton handleReset={reset}>Reset</ResetButton>
         </div>
       </div>
-    );
-  }
-}
+      <div className="notes-container">
+        <h5 className="notes">
+          * If you use keyboard press SPACE key for Reset and BACKSPACE key for
+          Backspace
+        </h5>
+      </div>
+    </div>
+  );
+};
 
 export default App;

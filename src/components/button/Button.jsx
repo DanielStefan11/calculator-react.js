@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 // CSS
-import './Button.css';
+import "./Button.css";
 
-export default function Button(props) {
+export default function Button({ children, handleClick }) {
   function isOperator(value) {
-    return !isNaN(value) || (value === '.' && value === '=');
+    return !isNaN(value) || (value === "." && value === "=");
   }
 
   return (
     <div
-      className={`button ${isOperator(props.children) ? '' : 'operator'} ${
-        props.children === 'Backspace' && 'backspace-btn'
-      } ${props.children === '=' && 'equal-btn'}`}
-      onClick={() => props.handleClick(props.children)}
+      className={`button ${isOperator(children) ? "" : "operator"} ${
+        children === "Backspace" && "backspace-btn"
+      } ${children === "=" && "equal-btn"}`}
+      onClick={() => handleClick(children)}
     >
-      {props.children}
+      {children}
     </div>
   );
 }
