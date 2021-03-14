@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // CSS
-import "./Button.css";
+import './Button.css';
 
 export default function Button({
   children,
@@ -15,27 +15,32 @@ export default function Button({
   pressed8,
   pressed9,
   pressed0,
+  buttonsPressed,
 }) {
   function isOperator(value) {
-    return !isNaN(value) || (value === "." && value === "=");
+    return !isNaN(value) || (value === '.' && value === '=');
   }
+
+  console.log('Button operator', buttonsPressed);
+  // console.log('Button operand', pressed1);
 
   return (
     <div
       className={`button
-      ${pressed1 && "operand-button-pressed"}
-      ${pressed2 && "operand-button-pressed"}
-      ${pressed3 && "operand-button-pressed"}
-      ${pressed4 && "operand-button-pressed"}
-      ${pressed5 && "operand-button-pressed"}
-      ${pressed6 && "operand-button-pressed"}
-      ${pressed7 && "operand-button-pressed"}
-      ${pressed8 && "operand-button-pressed"}
-      ${pressed9 && "operand-button-pressed"}
-      ${pressed0 && "operand-button-pressed"}
-      ${isOperator(children) ? "" : "operator"} 
-      ${children === "Backspace" && "backspace-btn"} ${
-        children === "=" && "equal-btn"
+      ${pressed1 && 'operand-button-pressed'}
+      ${pressed2 && 'operand-button-pressed'}
+      ${pressed3 && 'operand-button-pressed'}
+      ${pressed4 && 'operand-button-pressed'}
+      ${pressed5 && 'operand-button-pressed'}
+      ${pressed6 && 'operand-button-pressed'}
+      ${pressed7 && 'operand-button-pressed'}
+      ${pressed8 && 'operand-button-pressed'}
+      ${pressed9 && 'operand-button-pressed'}
+      ${pressed0 && 'operand-button-pressed'}
+      ${buttonsPressed && 'operators-button-style'}
+      ${isOperator(children) ? '' : 'operator'} 
+      ${children === 'Backspace' && 'backspace-btn'} ${
+        children === '=' && 'equal-btn'
       }
       `}
       onClick={() => handleClick(children)}

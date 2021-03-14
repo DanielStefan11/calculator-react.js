@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 // Components
-import Output from "./components/output/Output";
-import Button from "./components/button/Button";
-import ResetButton from "./components/resetButton/ResetButton";
+import Output from './components/output/Output';
+import Button from './components/button/Button';
+import ResetButton from './components/resetButton/ResetButton';
 // CSS
-import "./App.css";
+import './App.css';
 
 const App = () => {
-  const [input, setInput] = useState(() => "");
+  const [input, setInput] = useState(() => '');
 
-
-
-  const [pressed1, setPressed1] = useState(() => false);
-  const [pressed2, setPressed2] = useState(() => false);
-  const [pressed3, setPressed3] = useState(() => false);
-  const [pressed4, setPressed4] = useState(() => false);
-  const [pressed5, setPressed5] = useState(() => false);
-  const [pressed6, setPressed6] = useState(() => false);
-  const [pressed7, setPressed7] = useState(() => false);
-  const [pressed8, setPressed8] = useState(() => false);
-  const [pressed9, setPressed9] = useState(() => false);
-  const [pressed0, setPressed0] = useState(() => false);
-
-  // const [pressedAddition, setPressedAddition] = useState(() => false);
-  // const [pressedSubtraction, setPressedSubtraction] = useState(() => false);
-  // const [pressedDivision, setPressedDivision] = useState(() => false);
-  // const [pressedMultiplication, setPressedMultiplication] = useState(
-  //   () => false
-  // );
-  // const [pressedLeftParanthesis, setPressedLeftParanthesis] = useState(
-  //   () => false
-  // );
-  // const [pressedRightParanthesis, setPressedRightParanthesis] = useState(
-  //   () => false
-  // );
-  // const [pressedBackspace, setPressedBackspace] = useState(() => false);
-  // const [pressedDot, setPressedDot] = useState(() => false);
+  const [buttonsPressed, setButtonsPressed] = useState(() => {
+    console.log('App state');
+    return {
+      // operands
+      key1: false,
+      key2: false,
+      key3: false,
+      key4: false,
+      key5: false,
+      key6: false,
+      key7: false,
+      key8: false,
+      key9: false,
+      key0: false,
+      // operators
+      additionKey: false,
+      subtractionKey: false,
+      divisionKey: false,
+      multiplicationKey: false,
+      backspaceKey: false,
+      leftParanthesisKey: false,
+      rightParanthesisKey: false,
+      dotKey: false,
+      equalKey: false,
+      resetKey: false,
+    };
+  });
 
   useEffect(() => {
     const listenerFunction = (event) => {
@@ -44,164 +44,279 @@ const App = () => {
 
       switch (digitCode) {
         // Operands
-        case "1":
+        case '1':
           digit = 1;
           setInput((prevInput) => prevInput + digit);
-          setPressed1(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key1: true };
+          });
           break;
-        case "2":
+        case '2':
           digit = 2;
           setInput((prevInput) => prevInput + digit);
-          setPressed2(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key2: true };
+          });
           break;
-        case "3":
+        case '3':
           digit = 3;
           setInput((prevInput) => prevInput + digit);
-          setPressed3(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key3: true };
+          });
           break;
-        case "4":
+        case '4':
           digit = 4;
           setInput((prevInput) => prevInput + digit);
-          setPressed4(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key4: true };
+          });
           break;
-        case "5":
+        case '5':
           digit = 5;
           setInput((prevInput) => prevInput + digit);
-          setPressed5(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key5: true };
+          });
           break;
-        case "6":
+        case '6':
           digit = 6;
           setInput((prevInput) => prevInput + digit);
-          setPressed6(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key6: true };
+          });
           break;
-        case "7":
+        case '7':
           digit = 7;
           setInput((prevInput) => prevInput + digit);
-          setPressed7(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key7: true };
+          });
           break;
-        case "8":
+        case '8':
           digit = 8;
           setInput((prevInput) => prevInput + digit);
-          setPressed8(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key8: true };
+          });
           break;
-        case "9":
+        case '9':
           digit = 9;
           setInput((prevInput) => prevInput + digit);
-          setPressed9(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key9: true };
+          });
           break;
-        case "0":
+        case '0':
           digit = 0;
           setInput((prevInput) => prevInput + digit);
-          setPressed0(() => true);
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key0: true };
+          });
           break;
 
         // Operators
-        case "+":
-          digit = "+";
+        case '+':
+          digit = '+';
           setInput((prevInput) => prevInput + digit);
-          console.log("+");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, additionKey: true };
+          });
+
           break;
-        case "-":
-          digit = "-";
+        case '-':
+          digit = '-';
           setInput((prevInput) => prevInput + digit);
-          console.log("-");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, subtractionKey: true };
+          });
           break;
-        case "/":
-          digit = "/";
+        case '/':
+          digit = '/';
           setInput((prevInput) => prevInput + digit);
-          console.log("/");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, divisionKey: true };
+          });
           break;
-        case "*":
-          digit = "*";
+        case '*':
+          digit = '*';
           setInput((prevInput) => prevInput + digit);
-          console.log("*");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, multiplicationKey: true };
+          });
           break;
-        case "=":
+        case '=':
           calculate();
-          console.log("calculate");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, equalKey: true };
+          });
           break;
 
         // Others
-        case ".":
-          digit = ".";
+        case '.':
+          digit = '.';
           setInput((prevInput) => prevInput + digit);
-          console.log(".");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, dotKey: true };
+          });
           break;
-        case "(":
-          digit = "(";
+        case '(':
+          digit = '(';
           setInput((prevInput) => prevInput + digit);
-          console.log("(");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, leftParanthesisKey: true };
+          });
           break;
-        case ")":
-          digit = ")";
+        case ')':
+          digit = ')';
           setInput((prevInput) => prevInput + digit);
-          console.log(")");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, rightParanthesisKey: true };
+          });
           break;
-        case " ":
+        case ' ':
           reset();
-          console.log("reset");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, resetKey: true };
+          });
           break;
-        case "Backspace":
+        case 'Backspace':
           backspace();
-          console.log("backspace");
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, backspaceKey: true };
+          });
           break;
       }
     };
 
-    document.addEventListener("keydown", listenerFunction);
+    document.addEventListener('keydown', listenerFunction);
 
     return () => {
-      document.removeEventListener("keydown", listenerFunction);
+      document.removeEventListener('keydown', listenerFunction);
     };
-  }, [input]);
+  }, [
+    input,
+    // buttonsPressed.key1,
+    // buttonsPressed.key2,
+    // buttonsPressed.key3,
+    // buttonsPressed.key4,
+    // buttonsPressed.key5,
+    // buttonsPressed.key6,
+    // buttonsPressed.key7,
+    // buttonsPressed.key8,
+    // buttonsPressed.key9,
+    // buttonsPressed.key0,
+    // buttonsPressed.additionKey,
+    // buttonsPressed.subtractionKey,
+    // buttonsPressed.multiplicationKey,
+    // buttonsPressed.divisionKey,
+    // buttonsPressed.dotKey,
+    // buttonsPressed.equalKey,
+    // buttonsPressed.leftParanthesisKey,
+    // buttonsPressed.rightParanthesisKey,
+    // buttonsPressed.backspaceKey,
+    // buttonsPressed.resetKey,
+    buttonsPressed,
+  ]);
 
   useEffect(() => {
     const listener = (event) => {
       const digitCode = event.key;
-      let digit;
 
       switch (digitCode) {
         // operands
-        case "1":
-          setPressed1(() => false);
+        case '1':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key1: false };
+          });
           break;
-        case "2":
-          setPressed2(() => false);
-        case "3":
-          setPressed3(() => false);
-        case "4":
-          setPressed4(() => false);
-        case "5":
-          setPressed5(() => false);
-        case "6":
-          setPressed6(() => false);
-        case "7":
-          setPressed7(() => false);
-        case "8":
-          setPressed8(() => false);
-        case "9":
-          setPressed9(() => false);
-        case "0":
-          setPressed0(() => false);
+        case '2':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key2: false };
+          });
+          break;
+        case '3':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key3: false };
+          });
+          break;
+        case '4':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key4: false };
+          });
+          break;
+        case '5':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key5: false };
+          });
+          break;
+        case '6':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key6: false };
+          });
+          break;
+        case '7':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key7: false };
+          });
+          break;
+        case '8':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key8: false };
+          });
+          break;
+        case '9':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key9: false };
+          });
+          break;
+        case '0':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, key0: false };
+          });
+          break;
+
+        // operantors
+        case '+':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, additionKey: false };
+          });
+          break;
+        case '-':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, subtractionKey: false };
+          });
+          break;
       }
     };
 
-    document.addEventListener("keyup", listener);
+    document.addEventListener('keyup', listener);
 
     return () => {
-      document.removeEventListener("keyup", listener);
+      document.removeEventListener('keyup', listener);
     };
   }, [
-    pressed1,
-    pressed2,
-    pressed3,
-    pressed4,
-    pressed5,
-    pressed6,
-    pressed7,
-    pressed8,
-    pressed9,
-    pressed0,
+    // buttonsPressed.key1,
+    // buttonsPressed.key2,
+    // buttonsPressed.key3,
+    // buttonsPressed.key4,
+    // buttonsPressed.key5,
+    // buttonsPressed.key6,
+    // buttonsPressed.key7,
+    // buttonsPressed.key8,
+    // buttonsPressed.key9,
+    // buttonsPressed.key0,
+    // buttonsPressed.additionKey,
+    // buttonsPressed.subtractionKey,
+    // buttonsPressed.multiplicationKey,
+    // buttonsPressed.divisionKey,
+    // buttonsPressed.dotKey,
+    // buttonsPressed.equalKey,
+    // buttonsPressed.leftParanthesisKey,
+    // buttonsPressed.rightParanthesisKey,
+    // buttonsPressed.backspaceKey,
+    // buttonsPressed.resetKey,
+    buttonsPressed,
   ]);
 
   const addToInput = (value) => {
@@ -209,9 +324,9 @@ const App = () => {
   };
 
   const backspace = () => {
-    if (typeof input === "string") {
+    if (typeof input === 'string') {
       setInput(input.slice(0, -1));
-    } else if (typeof input === "number") {
+    } else if (typeof input === 'number') {
       setInput(input.toString().slice(0, -1));
     }
   };
@@ -219,83 +334,95 @@ const App = () => {
   const calculate = () => {
     try {
       setInput(
-        eval(input) === Infinity ? "Can not be divided by 0" : eval(input)
+        eval(input) === Infinity ? 'Can not be divided by 0' : eval(input)
       );
     } catch (e) {
-      setInput("Error - click Reset");
+      setInput('Error - click Reset');
     }
   };
 
   const reset = () => {
-    setInput("");
+    setInput('');
   };
 
+  console.log('APP', buttonsPressed);
+
   return (
-    <div className="App">
-      <h1 className="calc-heading">React Calculator</h1>
-      <div className="calc-container">
-        <div className="row">
+    <div className='App'>
+      <h1 className='calc-heading'>React Calculator</h1>
+      <div className='calc-container'>
+        <div className='row'>
           <Output>{input}</Output>
         </div>
 
-        <div className="row">
+        <div className='row'>
           <Button handleClick={addToInput}>(</Button>
           <Button handleClick={backspace}>Backspace</Button>
           <Button handleClick={addToInput}>)</Button>
         </div>
-        <div className="row">
-          <Button pressed7={pressed7} handleClick={addToInput}>
+        <div className='row'>
+          <Button pressed7={buttonsPressed.key7} handleClick={addToInput}>
             7
           </Button>
-          <Button pressed8={pressed8} handleClick={addToInput}>
+          <Button pressed8={buttonsPressed.key8} handleClick={addToInput}>
             8
           </Button>
-          <Button pressed9={pressed9} handleClick={addToInput}>
+          <Button pressed9={buttonsPressed.key9} handleClick={addToInput}>
             9
           </Button>
           <Button handleClick={addToInput}>/</Button>
         </div>
 
-        <div className="row">
-          <Button pressed4={pressed4} handleClick={addToInput}>
+        <div className='row'>
+          <Button pressed4={buttonsPressed.key4} handleClick={addToInput}>
             4
           </Button>
-          <Button pressed5={pressed5} handleClick={addToInput}>
+          <Button pressed5={buttonsPressed.key5} handleClick={addToInput}>
             5
           </Button>
-          <Button pressed6={pressed6} handleClick={addToInput}>
+          <Button pressed6={buttonsPressed.key6} handleClick={addToInput}>
             6
           </Button>
           <Button handleClick={addToInput}>*</Button>
         </div>
 
-        <div className="row">
-          <Button pressed1={pressed1} handleClick={addToInput}>
+        <div className='row'>
+          <Button pressed1={buttonsPressed.key1} handleClick={addToInput}>
             1
           </Button>
-          <Button pressed2={pressed2} handleClick={addToInput}>
+          <Button pressed2={buttonsPressed.key2} handleClick={addToInput}>
             2
           </Button>
-          <Button pressed3={pressed3} handleClick={addToInput}>
+          <Button pressed3={buttonsPressed.key3} handleClick={addToInput}>
             3
           </Button>
-          <Button handleClick={addToInput}>+</Button>
+          <Button
+            buttonsPressed={buttonsPressed.additionKey}
+            handleClick={addToInput}
+          >
+            +
+          </Button>
         </div>
 
-        <div className="row">
+        <div className='row'>
           <Button handleClick={addToInput}>.</Button>
-          <Button pressed0={pressed0} handleClick={addToInput}>
+          <Button pressed0={buttonsPressed.key0} handleClick={addToInput}>
             0
           </Button>
           <Button handleClick={calculate}>=</Button>
-          <Button handleClick={addToInput}>-</Button>
+          <Button
+            buttonsPressed={buttonsPressed.subtractionKey}
+            handleClick={addToInput}
+          >
+            -
+          </Button>
         </div>
-        <div className="row">
+        <div className='row'>
           <ResetButton handleReset={reset}>Reset</ResetButton>
         </div>
       </div>
-      <div className="notes-container">
-        <h5 className="notes">
+      <div className='notes-container'>
+        <h5 className='notes'>
           * If you use keyboard press SPACE key for Reset and BACKSPACE key for
           Backspace
         </h5>
