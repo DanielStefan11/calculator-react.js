@@ -19,6 +19,12 @@
   background-color: #d6543d;
 }
 
+.reset-btn-pressed {
+  background-color: #d6543d62;
+}
+
+/* media queries */
+
 @media screen and (max-width: 500px) {
   .reset-btn {
     height: 3.5em;

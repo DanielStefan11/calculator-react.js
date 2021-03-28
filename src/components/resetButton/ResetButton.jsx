@@ -1,10 +1,13 @@
-import React from "react";
+import React from 'react';
 // CSS
-import "./ResetButton.css";
+import './ResetButton.css';
 
-export default function ResetButton({ children, handleReset }) {
+export default function ResetButton({ children, handleReset, resetButton }) {
   return (
-    <div className="reset-btn" onClick={() => handleReset()}>
+    <div
+      className={`reset-btn  ${resetButton && 'reset-btn-pressed'}`}
+      onClick={() => handleReset()}
+    >
       {children}
     </div>
   );

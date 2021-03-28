@@ -194,30 +194,7 @@ const App = () => {
     return () => {
       document.removeEventListener('keydown', listenerFunction);
     };
-  }, [
-    input,
-    // buttonsPressed.key1,
-    // buttonsPressed.key2,
-    // buttonsPressed.key3,
-    // buttonsPressed.key4,
-    // buttonsPressed.key5,
-    // buttonsPressed.key6,
-    // buttonsPressed.key7,
-    // buttonsPressed.key8,
-    // buttonsPressed.key9,
-    // buttonsPressed.key0,
-    // buttonsPressed.additionKey,
-    // buttonsPressed.subtractionKey,
-    // buttonsPressed.multiplicationKey,
-    // buttonsPressed.divisionKey,
-    // buttonsPressed.dotKey,
-    // buttonsPressed.equalKey,
-    // buttonsPressed.leftParanthesisKey,
-    // buttonsPressed.rightParanthesisKey,
-    // buttonsPressed.backspaceKey,
-    // buttonsPressed.resetKey,
-    buttonsPressed,
-  ]);
+  }, [input, buttonsPressed]);
 
   useEffect(() => {
     const listener = (event) => {
@@ -287,6 +264,46 @@ const App = () => {
             return { ...prevButtonsState, subtractionKey: false };
           });
           break;
+        case '*':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, multiplicationKey: false };
+          });
+          break;
+        case '/':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, divisionKey: false };
+          });
+          break;
+        case '(':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, leftParanthesisKey: false };
+          });
+          break;
+        case ')':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, rightParanthesisKey: false };
+          });
+          break;
+        case 'Backspace':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, backspaceKey: false };
+          });
+          break;
+        case '.':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, dotKey: false };
+          });
+          break;
+        case '=':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, equalKey: false };
+          });
+          break;
+        case ' ':
+          setButtonsPressed((prevButtonsState) => {
+            return { ...prevButtonsState, resetKey: false };
+          });
+          break;
       }
     };
 
@@ -295,29 +312,7 @@ const App = () => {
     return () => {
       document.removeEventListener('keyup', listener);
     };
-  }, [
-    // buttonsPressed.key1,
-    // buttonsPressed.key2,
-    // buttonsPressed.key3,
-    // buttonsPressed.key4,
-    // buttonsPressed.key5,
-    // buttonsPressed.key6,
-    // buttonsPressed.key7,
-    // buttonsPressed.key8,
-    // buttonsPressed.key9,
-    // buttonsPressed.key0,
-    // buttonsPressed.additionKey,
-    // buttonsPressed.subtractionKey,
-    // buttonsPressed.multiplicationKey,
-    // buttonsPressed.divisionKey,
-    // buttonsPressed.dotKey,
-    // buttonsPressed.equalKey,
-    // buttonsPressed.leftParanthesisKey,
-    // buttonsPressed.rightParanthesisKey,
-    // buttonsPressed.backspaceKey,
-    // buttonsPressed.resetKey,
-    buttonsPressed,
-  ]);
+  }, [buttonsPressed]);
 
   const addToInput = (value) => {
     setInput(input + value);
@@ -356,48 +351,73 @@ const App = () => {
         </div>
 
         <div className='row'>
-          <Button handleClick={addToInput}>(</Button>
-          <Button handleClick={backspace}>Backspace</Button>
-          <Button handleClick={addToInput}>)</Button>
+          <Button
+            operatorButtons={buttonsPressed.leftParanthesisKey}
+            handleClick={addToInput}
+          >
+            (
+          </Button>
+          <Button
+            operatorButtons={buttonsPressed.backspaceKey}
+            handleClick={backspace}
+          >
+            Backspace
+          </Button>
+          <Button
+            operatorButtons={buttonsPressed.rightParanthesisKey}
+            handleClick={addToInput}
+          >
+            )
+          </Button>
         </div>
         <div className='row'>
-          <Button pressed7={buttonsPressed.key7} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key7} handleClick={addToInput}>
             7
           </Button>
-          <Button pressed8={buttonsPressed.key8} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key8} handleClick={addToInput}>
             8
           </Button>
-          <Button pressed9={buttonsPressed.key9} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key9} handleClick={addToInput}>
             9
           </Button>
-          <Button handleClick={addToInput}>/</Button>
+          <Button
+            operatorButtons={buttonsPressed.divisionKey}
+            handleClick={addToInput}
+          >
+            /
+          </Button>
         </div>
 
         <div className='row'>
-          <Button pressed4={buttonsPressed.key4} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key4} handleClick={addToInput}>
             4
           </Button>
-          <Button pressed5={buttonsPressed.key5} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key5} handleClick={addToInput}>
             5
           </Button>
-          <Button pressed6={buttonsPressed.key6} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key6} handleClick={addToInput}>
             6
           </Button>
-          <Button handleClick={addToInput}>*</Button>
+          <Button
+            operatorButtons={buttonsPressed.multiplicationKey}
+            handleClick={addToInput}
+          >
+            *
+          </Button>
         </div>
 
         <div className='row'>
-          <Button pressed1={buttonsPressed.key1} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key1} handleClick={addToInput}>
             1
           </Button>
-          <Button pressed2={buttonsPressed.key2} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key2} handleClick={addToInput}>
             2
           </Button>
-          <Button pressed3={buttonsPressed.key3} handleClick={addToInput}>
+          <Button operandButtons={buttonsPressed.key3} handleClick={addToInput}>
             3
           </Button>
           <Button
-            buttonsPressed={buttonsPressed.additionKey}
+            operatorButtons={buttonsPressed.additionKey}
             handleClick={addToInput}
           >
             +
@@ -405,20 +425,35 @@ const App = () => {
         </div>
 
         <div className='row'>
-          <Button handleClick={addToInput}>.</Button>
-          <Button pressed0={buttonsPressed.key0} handleClick={addToInput}>
+          <Button
+            operatorButtons={buttonsPressed.dotKey}
+            handleClick={addToInput}
+          >
+            .
+          </Button>
+          <Button operandButtons={buttonsPressed.key0} handleClick={addToInput}>
             0
           </Button>
-          <Button handleClick={calculate}>=</Button>
           <Button
-            buttonsPressed={buttonsPressed.subtractionKey}
+            resultButton={buttonsPressed.equalKey}
+            handleClick={calculate}
+          >
+            =
+          </Button>
+          <Button
+            operatorButtons={buttonsPressed.subtractionKey}
             handleClick={addToInput}
           >
             -
           </Button>
         </div>
         <div className='row'>
-          <ResetButton handleReset={reset}>Reset</ResetButton>
+          <ResetButton
+            resetButton={buttonsPressed.resetKey}
+            handleReset={reset}
+          >
+            Reset
+          </ResetButton>
         </div>
       </div>
       <div className='notes-container'>
