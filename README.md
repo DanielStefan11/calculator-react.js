@@ -2,7 +2,7 @@
 
 Simple Calculator created with React.js
 
-**Deployed at:** https://react-calculator-one.herokuapp.com/
+
 
 ## Functionalities:
 
